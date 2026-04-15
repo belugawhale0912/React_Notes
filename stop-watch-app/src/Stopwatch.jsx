@@ -1,5 +1,14 @@
 import React, {useState, useEffect, useRef} from 'react';
 
+/*
+ * Stopwatch Logic Summary:
+ * - isRunning triggers useEffect to start/clear a 10ms interval
+ * - Each tick calculates elapsedTime as Date.now() - startTimeRef
+ * - On resume, startTimeRef is set to Date.now() - elapsedTime, recreating
+ *   the original reference point so the display continues from where it paused
+ * - e.g. : elapsed time is 10min, we stop and continue after an hour, the anchor will become the current time - the elapsed 10min so the stopwatch can continue the 10min count
+ */
+
 function Stopwatch(){
 
     const [isRunning, setIsRunning] = useState(false); //status of the stopwatch: running = true, stop = false
@@ -16,7 +25,7 @@ function Stopwatch(){
 
         if(isRunning){
             intervalIdRef.current = setInterval(() => {
-                setElapsedTime(Date.now() - startTimeRef.current);
+                setElapsedTime(Date.now() - startTimeRef.current); //set the time elapsed by deducting with the time anchor
             }, 10);
 
             return () => {
@@ -29,7 +38,7 @@ function Stopwatch(){
 
     function start(){ //sets isRunning to true to trigger the useEffect
         setIsRunning(true);
-        startTimeRef.current = Date.now() - elapsedTime; //record the current time minus the elapsed time
+        startTimeRef.current = Date.now() - elapsedTime; //record the current time minus the elapsed time to update the time anchor
     }
 
     function stop(){ //sets isRunning to false to trigger the useEffect cleanup to kill the interval
@@ -72,11 +81,3 @@ function Stopwatch(){
 export default Stopwatch
 
 
-
-/*
- * Stopwatch Logic Summary:
- * - isRunning triggers useEffect to start/clear a 10ms interval
- * - Each tick calculates elapsedTime as Date.now() - startTimeRef
- * - On resume, startTimeRef is set to Date.now() - elapsedTime, reverse-engineering
- *   the original reference point so the display continues from where it paused
- */
