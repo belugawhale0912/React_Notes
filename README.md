@@ -1,12 +1,7 @@
-## React Fundamentals Learning Journey
-
-This repository is a collection of projects and exercises focused on mastering **React** and its core principles. It serves as a personal laboratory for exploring technical implementations, hooks, and state management.
-
+## React Fundamentals
 ---
 
-### ### Repository Overview
-
-The following modules cover essential React concepts, moving from basic UI components to complex state logic and hooks:
+### Overview
 
 *   **Core Concepts & UI**
     *   `card-components`: Building reusable UI structures.
@@ -32,9 +27,5 @@ The following modules cover essential React concepts, moving from basic UI compo
 
 ---
 
-### ### Philosophy
-
-This repository reflects a "perfectionist" approach to learning—focusing on understanding how these tools work "under the hood" rather than just surface-level implementation. Each folder represents a step toward a deep conceptual understanding of modern full-stack web technologies.
-
-### ### Credits
+### Credits
 BroCode
